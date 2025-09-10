@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Portal - Shining Light International School</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-light: #d1fae5;
+            --secondary: #059669;
+            --dark: #065f46;
+            --light: #f0fdf4;
+            --success: #10b981;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .login-container {
+            max-width: 480px;
+            width: 100%;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(16, 185, 129, 0.1);
+        }
+        
+        .login-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(30deg);
+        }
+        
+        .login-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .login-body {
+            padding: 2.5rem 2rem;
+        }
+        
+        .form-control {
+            height: 50px;
+            padding-left: 45px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(16, 185, 129, 0.15);
+        }
+        
+        .input-group-text {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: transparent;
+            border: none;
+            z-index: 10;
+            color: #6c757d;
+            width: 45px;
+            justify-content: center;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #6c757d;
+            z-index: 10;
+        }
+        
+        .btn-login {
+            background: var(--primary);
+            border: none;
+            height: 50px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-login:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        .login-footer {
+            text-align: center;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid #f0f0f0;
+            background: #f9f9ff;
+            font-size: 0.9rem;
+        }
+        
+        .login-footer a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .login-footer a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+        
+        .form-check-input:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .floating-shape {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.15) 100%);
+            z-index: -1;
+        }
+        
+        .shape-1 {
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+        }
+        
+        .shape-2 {
+            bottom: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+        }
+        
+        .family-illustration {
+            max-width: 100%;
+            height: auto;
+            margin: 1.5rem 0;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="login-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h2 class="mb-2">Parent Portal</h2>
+                <p class="mb-0">Stay connected with your child's education</p>
+            </div>
+            
+            <div class="login-body">
+                <div class="text-center mb-4">
+                    <svg class="family-illustration" width="200" height="120" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M40 80C40 68.9543 48.9543 60 60 60C71.0457 60 80 68.9543 80 80V90H40V80Z" fill="#10B981"/>
+                        <path d="M120 80C120 68.9543 128.954 60 140 60C151.046 60 160 68.9543 160 80V90H120V80Z" fill="#10B981"/>
+                        <path d="M100 50C111.046 50 120 41.0457 120 30C120 18.9543 111.046 10 100 10C88.9543 10 80 18.9543 80 30C80 41.0457 88.9543 50 100 50Z" fill="#10B981"/>
+                        <path d="M50 40C61.0457 40 70 30.0457 70 20C70 9.9543 61.0457 0 50 0C38.9543 0 30 9.9543 30 20C30 30.0457 38.9543 40 50 40Z" fill="#10B981"/>
+                        <path d="M150 40C161.046 40 170 30.0457 170 20C170 9.9543 161.046 0 150 0C138.954 0 130 9.9543 130 20C130 30.0457 138.954 40 150 40Z" fill="#10B981"/>
+                        <path d="M40 100H20V90H40V100Z" fill="#10B981"/>
+                        <path d="M180 100H160V90H180V100Z" fill="#10B981"/>
+                        <path d="M180 110H20V100H180V110Z" fill="#065F46"/>
+                    </svg>
+                </div>
+                
+                <form id="parentLoginForm">
+                    <div class="mb-4 position-relative">
+                        <label for="email" class="form-label fw-500 mb-2">Email Address</label>
+                        <div class="position-relative">
+                            <span class="input-group-text">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <input type="email" class="form-control ps-4" id="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4 position-relative">
+                        <label for="password" class="form-label fw-500 mb-2">Password</label>
+                        <div class="position-relative">
+                            <span class="input-group-text">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            <input type="password" class="form-control ps-4" id="password" placeholder="••••••••" required>
+                            <button type="button" class="toggle-password" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="rememberMe">
+                                <label class="form-check-label small" for="rememberMe">Remember me</label>
+                            </div>
+                            <a href="#" class="small text-decoration-none">Forgot password?</a>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-login w-100 mb-4">
+                        <span class="spinner-border spinner-border-sm d-none" id="spinner"></span>
+                        <span id="loginText">Sign In to Parent Portal</span>
+                    </button>
+                </form>
+                
+                <div class="text-center small text-muted mb-3">
+                    Or sign in with
+                </div>
+                
+                <div class="d-flex gap-3 mb-4">
+                    <a href="#" class="btn btn-outline-success flex-grow-1 py-2">
+                        <i class="fab fa-google me-2"></i> Google
+                    </a>
+                    <a href="#" class="btn btn-outline-success flex-grow-1 py-2">
+                        <i class="fab fa-microsoft me-2"></i> Microsoft
+                    </a>
+                </div>
+            </div>
+            
+            <div class="login-footer">
+                Not a parent? <a href="login.html">Go to main login</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle password visibility
+            const togglePassword = document.getElementById('togglePassword');
+            const password = document.getElementById('password');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = password.type === 'password' ? 'text' : 'password';
+                password.type = type;
+                this.querySelector('i').classList.toggle('fa-eye');
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+            
+            // Add animation to form elements
+            const formInputs = document.querySelectorAll('.form-control');
+            formInputs.forEach(input => {
+                // Add focus effect
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'translateY(-2px)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Form submission
+            document.getElementById('parentLoginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const spinner = document.getElementById('spinner');
+                const loginText = document.getElementById('loginText');
+                const submitBtn = this.querySelector('button[type="submit"]');
+                
+                // Show loading state
+                spinner.classList.remove('d-none');
+                loginText.textContent = 'Signing in...';
+                submitBtn.disabled = true;
+                
+                // Simulate API call with animation
+                setTimeout(() => {
+                    // Add success animation
+                    submitBtn.innerHTML = '<i class="fas fa-check-circle me-2"></i> Welcome Back!';
+                    submitBtn.classList.remove('btn-login');
+                    submitBtn.classList.add('btn-success');
+                    
+                    // Redirect to parent dashboard
+                    setTimeout(() => {
+                        window.location.href = 'dashboard/parent.html';
+                    }, 800);
+                }, 1500);
+            });
+            
+            // Animate floating shapes
+            const shapes = document.querySelectorAll('.floating-shape');
+            let angle = 0;
+            
+            function animateShapes() {
+                angle += 0.2;
+                shapes[0].style.transform = `translate(${Math.sin(angle) * 10}px, ${Math.cos(angle) * 10}px)`;
+                shapes[1].style.transform = `translate(${Math.cos(angle) * 15}px, ${Math.sin(angle) * 15}px)`;
+                requestAnimationFrame(animateShapes);
+            }
+            
+            animateShapes();
+        });
+    </script>
+</body>
+</html>
